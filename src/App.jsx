@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react"
-
-// https://restcountries.com/v3.1/region/europe 
+import { useState, useEffect } from "react";
+import ListCard from "./components/ListCard";
 
 
 function App() {
@@ -9,7 +8,7 @@ function App() {
 
   useEffect(() => {
 
-    fetch("https://restcountries.com/v3.1/region/europe")
+    fetch("https://restcountries.com/v3.1/region/africa")
     .then(data => data.json())
     .then(data => {
       console.log(data)
@@ -23,7 +22,7 @@ function App() {
         }
 
         else {
-          return 0;
+          return 0
         }
       })
       setCountries(data)
@@ -33,9 +32,16 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-800">
-      <div className="max-w-7x1 mx-auto py-20 px-4">
-        <h1 className="text-gray-50 text-4x1">Europe Countries Data.</h1>
-        <p className="text-gray-100 text-x1 mb-8">Click on a card to reveal a country's informations.</p>
+      <div className="max-w-7xl mx-auto py-20 px-4">
+        <h1 className="text-gray-50 text-4xl">Africa Countries Data.</h1>
+        <p className="text-gray-100 text-xl mb-8">Click on a card to reveal a country's informations.</p>
+        {countries && (
+          <ul className="grid min-[450px]:grid-cols-2 md:grid-cols-4 gap-10 auto-rows-[200px]">
+            {countries.map((country, index) => (
+              <ListCard key={index} country={country} />
+        ))}
+          </ul>
+        )}
       </div>
     </div>
   )
