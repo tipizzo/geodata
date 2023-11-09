@@ -1,4 +1,5 @@
 function ModalContent({country, closeModal}) {
+    console.log(Object.entries(country.languages));
     return (
         <div onClick={closeModal} className="fixed z-10 top-6 left-0 w-full h-full bg-gray-800/95 flex justify-center items-center">
             <div onClick={e => e.stopPropagation()} className="min-w-[500px] relative rounded p-7 bg-gray-50">
@@ -7,8 +8,18 @@ function ModalContent({country, closeModal}) {
                 </button>
                 <h2 className="text-2xl mb-4">Here is {country.name.common}'s information</h2>
                 <p className="text-lg mb-2">
-                    <span className="font-semibold">Languages(s)</span>
+                    <span className="font-semibold">Language(s)</span>
+                    : {Object.entries(country.languages).map(lang => lang[1] + " ")}
                 </p>
+                <p className="text-lg mb-2">
+                    <span className="font-semibold">Capital</span> : {country.capital[0]}
+                </p>
+                <p className="text-lg mb-2">
+                    <span className="font-semibold">Population</span> : {country.population}
+                </p>
+                <p className="text-lg mb-2">
+                    <span className="font-semibold">GoogleMapLink</span> : {country.maps.googleMaps}
+                </p>  
             </div>
         </div>
     )
